@@ -36,11 +36,13 @@
         <div class="drop-area">
           <p>Drop files here!</p>
         </div>
-        <label for="file"><strong>Choose a file</strong></label>
+        <div class="or"><p>or</p></div>
+        <div class="inline">
+        <label for="file"><strong>Browse</strong></label>
         <input type="file" name="file" id="file" class="fileInput" data-multiple-caption="{count} files selected"
           multiple accept=".jpg, .jpeg, .png, .mp4, .mov">
         <input type="text" id="fileName" class="filename" for="file">
-
+        </div>
         <div>
         <button type="button" onmouseover="hello()" onmouseout="goodBye()" class="infobtn"><img src="icons/info.svg" alt="icon" ></button>
         
@@ -49,17 +51,21 @@
       <div class="modal-footer">
         <!--<h3>Modal Footer</h3>-->
       </div>
-      <div id="myP"><p>Specifications:<br>
-        Images
-        File color format: RGB (NO TRANSPARENT IMAGES)
-        For vertical template layout: Dimensions 1080 x 1158 Pixels (Width x Height)
+      <div id="myP"><p><span class="bold">Specifications:</span><br>
+        Images<br>
+        File color format: RGB (NO TRANSPARENT IMAGES)<br>
+        For vertical template layout: Dimensions 1080 x 1158 Pixels (Width x Height)<br>
         For the horizontal template layout: Image Dimensions 1460 x 830 Pixels (Width x Height)<br><br>
         
          
         
-        Videos
-        Videos: mp4 (no sound) and try to keep them short with closed captions</p>
-        <p>Specifications: </p></div>
+        Videos<br>
+        mp4 (no sound) and try to keep them short with closed captions</p>
+        <p><span class="bold">Supported files:</span><br>
+          .jpg, .jpeg, .png, .mp4, .mov
+        
+        
+        </p></div>
       
     </div>
 
@@ -67,70 +73,65 @@
 
   </div>
 
+<script>
+  
+
+function hello() {
+  document.getElementById("myP").style.visibility = "visible";
+}
+function goodBye() {
+    document.getElementById("myP").style.visibility = "hidden";
+}
 
 
+// Get the modal
+var modal = document.getElementById("myModal");
 
-  <script>
-    function hello() {
-      document.getElementById("myP").style.visibility = "visible";
-    }
-    function goodBye() {
-        document.getElementById("myP").style.visibility = "hidden";
-    }
-    
-    </script>
-  <script>
-    // Get the modal
-    var modal = document.getElementById("myModal");
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
 
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
 
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+// When the user clicks the button, open the modal 
+btn.onclick = function () {
+  modal.style.display = "block";
+}
 
-    // When the user clicks the button, open the modal 
-    btn.onclick = function () {
-      modal.style.display = "block";
-    }
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+  modal.style.display = "none";
+}
 
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function () {
-      modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-  </script>
-
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
 
 
 
 
-  <script>
-    var inputs = document.querySelectorAll('.fileInput');
-    Array.prototype.forEach.call(inputs, function (input) {
-      var label = input.nextElementSibling,
-        labelVal = label.innerHTML;
+var inputs = document.querySelectorAll('.fileInput');
+Array.prototype.forEach.call(inputs, function (input) {
+  var label = input.nextElementSibling,
+    labelVal = label.innerHTML;
 
-      input.addEventListener('change', function (e) {
-        var fileName = '';
-        if (this.files && this.files.length > 1)
-          fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
-        else
-          fileName = e.target.value.split('\'').pop();
+  input.addEventListener('change', function (e) {
+    var fileName = '';
+    if (this.files && this.files.length > 1)
+      fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
+    else
+      fileName = e.target.value.split('\'').pop();
 
-        if (fileName)
-          label.querySelector('span').innerHTML = fileName;
-        else
-          label.innerHTML = labelVal;
-      });
-    });
-  </script>
+    if (fileName)
+      label.querySelector('span').innerHTML = fileName;
+    else
+      label.innerHTML = labelVal;
+  });
+});
+</script>
 
 
 </body>
