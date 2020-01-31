@@ -1,0 +1,13 @@
+<div>
+    <p>{{vm.bodyText}}</p>
+    <button ng-click="vm.openModal('custom-modal-2')">Open Modal 2</button></div>
+
+<modal id="custom-modal-2">
+    <div class="modal">
+        <div class="modal-body">
+            <h1 style="height:1000px">A Tall Custom Modal!</h1>
+            <button ng-click="vm.closeModal('custom-modal-2');">Close</button>
+        </div>
+    </div>
+    <div class="modal-background"></div>
+</modal>

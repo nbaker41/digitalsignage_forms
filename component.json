@@ -1,0 +1,10 @@
+{
+  "name": "dropzone",
+  "repo": "enyo/dropzone",
+  "version": "5.5.0",
+  "description": "Handles drag and drop of files for you.",
+  "scripts": [ "js/index.js", "js/dropzonejs/dropzone.js" ],
+  "styles": [ "assets/css/dropzone/basic.css" ],
+  "dependencies": { },
+  "license": "MIT"
+}

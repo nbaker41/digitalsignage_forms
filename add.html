@@ -1,22 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html ng-app ="myApp" >
 
 <head>
   <link
     href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700|Roboto+Slab:300,400,500,700|Roboto:300,400,500,700,900&display=swap"
     rel="stylesheet">
   <link href="assets/css/main.css" rel="stylesheet">
-  <script src="js/addmodal.js"></script>
+  <script src="js/app.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
-  <style>
-    
-  
-  
-  
-  
-
-  </style>
+  <script src="js/lvl-drag-drop.js"></script>
+  <script src="js/lvl-uuid.js.js"></script>
 
 </head>
 
@@ -27,13 +21,13 @@
   <div id="myModal" class="modal">
 
     <!-- Modal content -->
-    <div class="modal-content">
+    <div class="modal-content" ng-controller="ddContoller">
       <div class="modal-header">
         <span class="close">&times;</span>
         <h2>Add Media</h2>
       </div>
       <div class="modal-body">
-        <div class="drop-area">
+        <div id="target" class="drop-area" x-lvl-drop-target="true" x-on-drop="dropped(dragEl,dropEl)">
           <p>Drop files here!</p>
         </div>
         <div class="or"><p>or</p></div>
@@ -53,14 +47,14 @@
       </div>
       <div id="myP"><p><span class="bold">Specifications:</span><br>
         Images<br>
-        File color format: RGB (NO TRANSPARENT IMAGES)<br>
+        Color format: RGB<br>
         For vertical template layout: Dimensions 1080 x 1158 Pixels (Width x Height)<br>
         For the horizontal template layout: Image Dimensions 1460 x 830 Pixels (Width x Height)<br><br>
         
          
         
         Videos<br>
-        mp4 (no sound) and try to keep them short with closed captions</p>
+        mp4 and try to keep them short with closed captions</p>
         <p><span class="bold">Supported files:</span><br>
           .jpg, .jpeg, .png, .mp4, .mov
         
@@ -76,6 +70,7 @@
 <script>
   
 
+//info Icon
 function hello() {
   document.getElementById("myP").style.visibility = "visible";
 }
@@ -112,7 +107,6 @@ window.onclick = function (event) {
 
 
 
-
 var inputs = document.querySelectorAll('.fileInput');
 Array.prototype.forEach.call(inputs, function (input) {
   var label = input.nextElementSibling,
@@ -131,8 +125,28 @@ Array.prototype.forEach.call(inputs, function (input) {
       label.innerHTML = labelVal;
   });
 });
-</script>
 
+function onDrop(event) {
+  const data = event.dataTransfer.getData("text/plain");
+  event.target.textContent = data;
+  event.preventDefault();
+}
+
+function drop_handler(event) {
+ console.log("Drop");
+ event.currentTarget.style.background = "lightyellow";
+
+ event.preventDefault();
+ var data = event.dataTransfer.getData("text");
+ ev.target.appendChild(document.getElementById('drop-area'));
+}
+
+function dragover_handler(event) {
+ console.log("dragOver");
+ ev.preventDefault();
+}
+
+</script>
 
 </body>
 
